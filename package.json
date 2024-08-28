@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "selenium_test": "jest --detectOpenHandles --testMatch '**/testSelenium.js'",
+        "selenium_test": "jest --detectOpenHandles --testMatch '**/testSelenium.js'"
     },
     "author": "",
     "license": "ISC",
