@@ -1,11 +1,17 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const options = new chrome.Options();
+const assert = require('assert');
 
-// Configure options for Chrome
-// options.addArguments('--disable-dev-shm-usage');
-// options.addArguments('--no-sandbox');
+options.addArguments('--disable-dev-shm-usage');
+options.addArguments('--no-sandbox');
 options.addArguments('--headless');
+
+// new
+const { Preferences, Type, Level } = require("selenium-webdriver/lib/logging");
+const logPrefs = new Preferences();
+logPrefs.setLevel(Type.BROWSER, Level.ALL);
+options.setLoggingPrefs(logPrefs);
 
 describe('Google Search Tests', () => {
   let driver;
@@ -20,6 +26,11 @@ describe('Google Search Tests', () => {
     console.log('Test finished')
     if (driver) {
       console.log('Closing the browser...');
+      const consoleLogs = await driver.manage().logs().get(Type.BROWSER);
+
+      for (let i = 0; i < consoleLogs.length; i++) {
+        console.log(consoleLogs[i]);
+      }
       await driver.quit();
     }
   });
