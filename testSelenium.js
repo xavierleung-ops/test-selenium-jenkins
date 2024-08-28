@@ -18,7 +18,7 @@ describe('Google Search Tests', () => {
 
   beforeAll(async () => {
     console.log('Starting the browser...');
-    const builder = new Builder().forBrowser('chrome').setChromeOptions(options).usingServer("http://chrome:4444/wd/hub/");
+    const builder = new Builder().forBrowser('chrome').setChromeOptions(options).usingServer("http://localhost:4444/wd/hub/");
     driver = await builder.build();
   });
 
